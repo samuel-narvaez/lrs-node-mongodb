@@ -12,7 +12,7 @@ let options = {
   getUser:function(req, username, password) {
     return new xapi.Account(username,true,true);
   },
-  baseUrl: "http://localhost:3000/xapi"
+  baseUrl: "http://localhost:4000/xapi"
 };
 app.use("/xapi", new xapi(options) );
 
