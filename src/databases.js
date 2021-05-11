@@ -1,13 +1,9 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://adminkim:OSFvQfVJOr2fBg10@cluster0.clwur.mongodb.net/aprendiendo-db',
-//mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false/aprendiendo-db',
+var uri = 'mongodb://localhost/myLRS';
+mongoose.createConnection(uri, { server: { poolSize: 4 }});
 
- {useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+// for a replica set
+mongoose.createConnection(uri, { replset: { poolSize: 4 }});
 
-})
-.then(db => console.log('DB is conected'))
-.catch(err => console.error(err));
-
-
+// passing the option in the URI works with single or replica sets
+var uri = 'mongodb://localhost/myLRS?poolSize=4';
+mongoose.createConnection(uri);
